@@ -9,45 +9,48 @@
         width: 150px;
         border-radius: 10px;
       }
+      hgroup {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-    <img
-      src="images/Rate My Course Logo.png"
-      alt="an image of Rate My Course Logo "
-    />
+    <hgroup>
+      <img
+        src="images/Rate My Course Logo.png"
+        alt="an image of Rate My Course Logo "
+      />
 
-    <h2>Login below</h2>
-    <form method = 'POST'>
-      <div>
-        <label for="email"> Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="smithj@montclair.edu"
-          value = "{{request.form['username']}}"
-          required
-        />
-      </div>
+      <h2>Login below</h2>
+      <form>
+        <div>
+          <label for="email"> Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="smithj@montclair.edu"
+            required
+          />
+        </div>
 
-      <div>
-        <label for="password"> Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password123!"
-          maxlength="12"
-          value = "{{request.form['password']}}"
-          required
-        />
-      </div>
-      <input type="submit" />
+        <div>
+          <label for="password"> Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password123!"
+            maxlength="12"
+            required
+          />
+        </div>
+        <input type="submit" />
 
-      <p>Forgot Information?</p>
-      <p>Don't have an account? Register below.</p>
-      <a href="/registor">Register Here</a>
-    </form>
+        <p>Forgot Information?</p>
+        <p>Don't have an account? Register below.</p>
+        <a href="register.html">Register Here</a>
+      </form>
+    </hgroup>
   </body>
 </html>
