@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>    
+
+    <body>
+        <div> 
+            <form method='post' action="/login"> <!-- Adjust the action attribute accordingly -->
+                <label>Username:</label>
+                <input type="text" name="username"></br>
+                <label>Password:</label>
+                <input type="password" name="password"></br> <!-- Use type="password" for sensitive information like passwords -->
+                <button type="submit">Click here to login</button>
+            </form>
+           
+        </div>
+          {%if loginVerifed == 'Loggin Successful!' %}
+          <p> {{loginVerifed}}</p>
+          {% else %}
+          <p> Ogoaogaoboga {{loginVerifed}}</p>
+          {% endif %}
+    </body>
+{% endblock %}
