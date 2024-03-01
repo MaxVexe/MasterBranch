@@ -4,7 +4,7 @@ from flask import Flask,render_template, request, url_for, flash, redirect
 import hashlib
 from werkzeug.exceptions import abort
 
-
+MainAccount = None
 #create to the database
 def get_db_connection():
     conn = sqlite3.connect('database.db')
@@ -87,6 +87,7 @@ def loggingtion():
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM Users WHERE username = (?)', (name,))
             account = cursor.fetchone()
+            MainAccount = account
             loginVerifed = ""
 
             #check if account is found then run following 
@@ -95,7 +96,7 @@ def loggingtion():
                 username_from_db = account['username']
                 password_from_db = account['password']
                 if password == password_from_db:
-                    loginVerifed = "Loggin Successful!"
+                    return homeRender(MainAccount)
                 else: 
                     loginVerifed = "Incorrect Password"
                 return render_template('loginPage.html',account = account,loginVerifed = loginVerifed)
@@ -109,3 +110,10 @@ def loggingtion():
             return render_template('loginPage.html',account = account)
 
     return render_template('loginPage.html')
+
+
+@app.route('/home', methods = ('GET','POST'))
+
+def homeRender(MainAccount):
+    return render_template('Homepage.html', MainAccount = MainAccount)
+
