@@ -2,6 +2,7 @@
 A web application designed specifically for Montclair State University Students to freely review and rate courses he or she has taken. 
 ## Changes
 Since we have split the group into two pairs, each pair working on the frontend or the backend, we are able to efficiently and effectively complete the project.
+
 **Frontend**
 
 Below is a list of tasks that we have created to use a guideline so far:
