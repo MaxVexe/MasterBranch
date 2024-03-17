@@ -25,7 +25,7 @@ app.config['SECRET_KEY'] = '1234'
 def index():
 
     #return the template and html
-        return render_template('index.html')
+        return render_template('amyHome.html')
     
 @app.route('/registor',methods =('GET','POST'))
 
@@ -35,41 +35,42 @@ def register():
     if request.method == 'POST':
 #sets all the variables to the html form
         name = request.form['name'] 
-        username = request.form['username']
+        username = request.form['Username']
+        email = request.form['email']
         password = request.form['password']
 #Testing hasing password
-        hash = password+app.secret_key
-        hash = hashlib.sha1(hash.encode()).hexdigest() 
-        password += hash
+        # hash = password+app.secret_key
+        # hash = hashlib.sha1(hash.encode()).hexdigest() 
+        # password += hash
 
 
-        if not name or not username or not password:
+        if not name or not username or not password or not email:
             flash('Please fill out all info!')
         else:
             #sets conn to get into the database
             conn = get_db_connection()
             #create a courses variable to be use for homepage
-            conn.execute('INSERT INTO Users (username,password,name) VALUES (?, ?, ?)',
-                         (name,username,password))
-
+            conn.execute('INSERT INTO Users (username,password,name,email) VALUES (?, ?, ?, ?)',
+                         (username,password,name,email))
+            
             #commit connection to the db
             conn.commit()
             #close Db 
             conn.close()
             
-            return render_template('base.html')
+            return render_template('amyRegistor.html')
     else:  
-      return render_template('base.html')
+      return render_template('amyRegistor.html')
 
 @app.route('/login',methods =('GET','POST'))
 
 def loggingtion():
     if request.method == 'POST':
         #assign variable name to the form info
-        name = request.form['username']
+        email = request.form['email']
         password = request.form['password']
         # check if the user has put in information 
-        if not name or not password:
+        if not email or not password:
             flash('Fill out the form bruh')
         else: 
             conn = get_db_connection()
@@ -85,7 +86,7 @@ def loggingtion():
             
             #create a cursor to access the query
             cursor = conn.cursor()
-            cursor.execute('SELECT * FROM Users WHERE username = (?)', (name,))
+            cursor.execute('SELECT * FROM Users WHERE email = (?)', (email,))
             account = cursor.fetchone()
             MainAccount = account
             loginVerifed = ""
@@ -93,7 +94,7 @@ def loggingtion():
             #check if account is found then run following 
             if account:
                 #set information from 
-                username_from_db = account['username']
+                username_from_db = account['email']
                 password_from_db = account['password']
                 if password == password_from_db:
                     return homeRender(MainAccount)
@@ -107,9 +108,9 @@ def loggingtion():
             conn.close()
           
 
-            return render_template('loginPage.html',account = account)
+            return render_template('amyLogin.html',account = account)
 
-    return render_template('loginPage.html')
+    return render_template('amyLogin.html')
 
 
 @app.route('/home', methods = ('GET','POST'))
@@ -117,3 +118,8 @@ def loggingtion():
 def homeRender(MainAccount):
     return render_template('Homepage.html', MainAccount = MainAccount)
 
+@app.route('/about', methods = ('GET','POST'))
+
+
+def profileRender(MainAccount):
+    return render_template('profileTest.html',MainAccount = MainAccount)

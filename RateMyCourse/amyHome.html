@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Rate My Course</title>
+    <style>
+      img {
+        width: 200px;
+        border-radius: 200px;
+        border: 2px solid #000000;
+      }
+
+      hgroup {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <hgroup>
+      <img src="{{url_for('static', filename='Logo.jpg')}}"  alt="an image of Rate My Course Logo " />
+      <div>
+        <h2>
+          Need to express your thoughts about a course? Why not put a rate to
+          it!
+        </h2>
+        <form action = "registor">
+        <p>
+          Are you a student? Sign up here.
+          <button type = "submit">Student Sign Up</button>
+        </p>
+        </form>
+        <!-- The app route is the href-->
+        <a href="login">Login Here</a>
+        <p>Designed for Montclair State University Students</p>
+        <img src="{{url_for('static', filename='MSU.jpg')}}" alt="an image of MSU hawk" />
+      </div>
+    </hgroup>
+  </body>
+</html>
