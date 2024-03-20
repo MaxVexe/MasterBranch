@@ -1,0 +1,60 @@
+/* for index page
+*/
+.index-box{
+    width: 360px;
+    height: px;
+    margin: auto;
+}
+form label {
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+form input {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none; 
+}
+input[type="submit"]{
+    width: 380px;
+    height: 35px;
+    margin-top: 20px;
+    background-color:  rgba(36, 118, 240, 0.932);
+    color:white;
+}
+
+h3{
+    text-decoration: underline;
+    text-decoration-color: rgba(36, 118, 240, 0.932);
+}
+/*
+for register page
+*/
+.register{
+        width: 360px;
+        height: px;
+        margin: auto;
+    }
+    form label {
+        display: flex;
+        margin-top: 20px;
+        font-size: 18px;
+      }
+    form input {
+        width: 100%;
+        padding: 7px;
+        border: none;
+        border: 1px solid gray;
+        border-radius: 6px;
+        outline: none; 
+    }
+    input[type="submit"]{
+        width: 380px;
+        height: 35px;
+        margin-top: 20px;
+        background-color:  rgba(36, 118, 240, 0.932);
+        color:white;
+    }
