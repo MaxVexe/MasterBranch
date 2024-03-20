@@ -1,10 +1,11 @@
 #creates the imports for the app
 import sqlite3
-from flask import Flask,render_template, request, url_for, flash, redirect
+from flask import Flask,render_template, request, url_for, flash, redirect,session
 import hashlib
 from werkzeug.exceptions import abort
 
-MainAccount = None
+
+
 #create to the database
 def get_db_connection():
     conn = sqlite3.connect('database.db')
@@ -88,7 +89,6 @@ def loggingtion():
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM Users WHERE email = (?)', (email,))
             account = cursor.fetchone()
-            MainAccount = account
             loginVerifed = ""
 
             #check if account is found then run following 
@@ -97,7 +97,9 @@ def loggingtion():
                 username_from_db = account['email']
                 password_from_db = account['password']
                 if password == password_from_db:
-                    return homeRender(MainAccount)
+                    #Stores the information into Session
+                    session['MainAccount'] = username_from_db 
+                    return homeRender()
                 else: 
                     loginVerifed = "Incorrect Password"
                 return render_template('loginPage.html',account = account,loginVerifed = loginVerifed)
@@ -115,11 +117,19 @@ def loggingtion():
 
 @app.route('/home', methods = ('GET','POST'))
 
-def homeRender(MainAccount):
-    return render_template('Homepage.html', MainAccount = MainAccount)
+
+def homeRender():
+     #check if session exist
+     if "MainAccount" in session:
+         #Get Session information from Session Data
+         MainAccount = session['MainAccount']
+         #pass mainaccount to html
+         return render_template('Homepage.html',MainAccount = MainAccount)
+     else:
+         return redirect(url_for("home"))
 
 @app.route('/about', methods = ('GET','POST'))
 
-
-def profileRender(MainAccount):
-    return render_template('profileTest.html',MainAccount = MainAccount)
+def profileRender():
+    MainAccount = session['MainAccount']
+    return render_template('profileTest.html', MainAccount = MainAccount)
