@@ -4,8 +4,6 @@ from flask import Flask,render_template, request, url_for, flash, redirect,sessi
 import hashlib
 from werkzeug.exceptions import abort
 
-
-
 #create to the database
 def get_db_connection():
     conn = sqlite3.connect('database.db')
@@ -26,7 +24,7 @@ app.config['SECRET_KEY'] = '1234'
 def index():
 
     #return the template and html
-        return render_template('amyHome.html')
+        return render_template('index.html')
     
 @app.route('/registor',methods =('GET','POST'))
 
@@ -102,7 +100,7 @@ def loggingtion():
                     return homeRender()
                 else: 
                     loginVerifed = "Incorrect Password"
-                return render_template('loginPage.html',account = account,loginVerifed = loginVerifed)
+                return render_template('amyHome.html',account = account,loginVerifed = loginVerifed)
 
              #commit connection to the db
             conn.commit()
@@ -110,9 +108,9 @@ def loggingtion():
             conn.close()
           
 
-            return render_template('amyLogin.html',account = account)
+            return render_template('amyHome.html',account = account)
 
-    return render_template('amyLogin.html')
+    return render_template('amyHome.html')
 
 
 @app.route('/home', methods = ('GET','POST'))
@@ -124,7 +122,7 @@ def homeRender():
          #Get Session information from Session Data
          MainAccount = session['MainAccount']
          #pass mainaccount to html
-         return render_template('Homepage.html',MainAccount = MainAccount)
+         return render_template('amySearch.html',MainAccount = MainAccount)
      else:
          return redirect(url_for("home"))
 
@@ -133,3 +131,12 @@ def homeRender():
 def profileRender():
     MainAccount = session['MainAccount']
     return render_template('profileTest.html', MainAccount = MainAccount)
+    MainAccount = session['MainAccount']
+    return render_template('profileTest.html', MainAccount = MainAccount)
+
+@app.route('/logout')
+
+def loggedOut():
+    MainAccount = session['MainAccount']
+    session.pop(MainAccount,None)
+    return redirect('/login')
