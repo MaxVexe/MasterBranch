@@ -1,6 +1,6 @@
 # MasterBranch
 __Update__ 
-|Updated|Where|how?|
+|Updated|Where|Whats next?|
 |--------|:-------:|:-----|
-|Login Feature|in app.py| Using some coding|
-|Fixed Route|Everywhere| Changing some names
+|Login Feature|in app.py| Need to fix Search feature for Courses|
+|Fixed Route|Everywhere|
