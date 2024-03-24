@@ -1,4 +1,5 @@
 #creates the imports for the app
+import sys
 import sqlite3
 from flask import Flask,render_template, request, url_for, flash, redirect,session
 import hashlib
@@ -97,7 +98,7 @@ def loggingtion():
                 if password == password_from_db:
                     #Stores the information into Session
                     session['MainAccount'] = username_from_db 
-                    return homeRender()
+                    return redirect("/home")
                 else: 
                     loginVerifed = "Incorrect Password"
                 return render_template('amyHome.html',account = account,loginVerifed = loginVerifed)
@@ -116,15 +117,25 @@ def loggingtion():
 @app.route('/home', methods = ('GET','POST'))
 
 
+
 def homeRender():
      #check if session exist
      if "MainAccount" in session:
          #Get Session information from Session Data
          MainAccount = session['MainAccount']
          #pass mainaccount to html
-         return render_template('amySearch.html',MainAccount = MainAccount)
+
+         if request.method == 'POST':
+             saved_option = request.form.get('savedOption')
+             session['savedOption'] = saved_option
+             savedOption = session['savedOption']
+             print(savedOption,file=sys.stderr)
+             return 'Option saved Sucessfully'
+         else:
+             return render_template('amySearch.html', MainAccount=MainAccount)
      else:
          return redirect(url_for("home"))
+     
 
 @app.route('/about', methods = ('GET','POST'))
 

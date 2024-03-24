@@ -142,10 +142,14 @@
     <! used for solid line>
     <p></p>
     <! used for select box>
-
+<! used for search bar >
+    <form class="example" action="results.html">
+      <input type="text" placeholder="Search.." name="search" />
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
     <h1>Look up any course</h1>
     <div class="custom-select" style="width: 200px">
-      <select>
+      <select id="courseSelect">
         <option value="0">Select a course:</option>
         <option value="1">CSIT</option>
         <option value="2">BIOL</option>
@@ -161,6 +165,7 @@
         <option value="12">CMST</option>
       </select>
     </div>
+    <div id = "demo"></div>
     <script>
       var x, i, j, l, ll, selElmnt, a, b, c;
       /*look for any elements with the class "custom-select":*/
@@ -199,6 +204,67 @@
                   y[k].removeAttribute("class");
                 }
                 this.setAttribute("class", "same-as-selected");
+                //Holder
+            //     var selectedOption = this.innerHTML
+            //     console.log(selectedOption)
+
+            var selectElement = document.getElementById('courseSelect');
+              selectElement.addEventListener('change', function(event) {
+                  var selectedOption = event.target.value;
+                  console.log(selectedOption); // Print selected option to console
+                });
+                  console.log("This is the stored value",this.innerHTML)
+                  console.log("This ran")
+                  sel = this.innerHTML
+                   //---------------------------------------------------------------------
+                  // Construct the JSON object
+                  var requestData = { table: sel, limit: 20 };
+
+                  // Create a new XMLHttpRequest object
+                  var xmlhttp = new XMLHttpRequest();
+
+                  // Define the onload function to handle the response
+                  xmlhttp.onload = function () {
+                    // Check if the response is successful
+                    if (xmlhttp.status == 200) {
+                      // Parse the JSON response
+                      const json = '{"result":true,"CSIT":{"Software Engineer":"3", "Operating Sys":1, "System Programming":"5"} ,"count":42,"Ooga":48}';
+    
+                      var myObj = JSON.parse(json);
+
+                      // Process the JSON data and update the UI
+                      let text = "<table border='1'>";
+                      text += "<tr><td>" + "Course Name" + "|" + "Course ID"+ "</td></tr>"
+                      for (let x in myObj) {
+                        //WIP
+                        if(x == sel){
+                            for(let resultP in x){
+                             if(Object.values(myObj[x])[resultP] == undefined){
+                              continue;
+                             }
+                           text += "<tr><td>" +Object.keys(myObj[x])[resultP]+"|" +Object.values(myObj[x])[resultP]+ "</td></tr>";
+                          }
+                        }
+                        //text += "<tr><td>" + myObj[x] + "</td></tr>";
+                      }
+                      text += "</table>";
+                      document.getElementById("demo").innerHTML = text;
+                    } else {
+                      // Handle error if the request is not successful
+                      console.error('Error occurred:', xmlhttp.statusText);
+                    }
+                  };
+
+                  // Open the request with POST method and specify the URL
+                  xmlhttp.open("POST", "home");
+
+                  // Set the request header
+                  xmlhttp.setRequestHeader("Content-type", "application/json");
+
+                  // Send the JSON data in the request body
+                  xmlhttp.send(JSON.stringify(requestData));
+
+      //-------------------------------------------------------------------
                 break;
               }
             }
@@ -246,14 +312,14 @@
         then close all select boxes:*/
       document.addEventListener("click", closeAllSelect);
     </script>
+
+
+   
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <! used for search bar >
-    <form class="example" action="results.html">
-      <input type="text" placeholder="Search.." name="search" />
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+    
   </body>
 </html>
