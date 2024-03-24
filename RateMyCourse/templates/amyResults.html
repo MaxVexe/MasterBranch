@@ -1,66 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Font Awesome Icon Library -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+
     <title>Results Page</title>
+    <style>
+      #Logo {
+        width: 150px;
+        border-radius: 100px;
+        border: 2px solid #000000;
+      }
+      p {
+        border-bottom-style: solid;
+      }
+      .logout {
+        float: right;
+      }
+      .account {
+        float: right;
+        margin-right: 1%;
+      }
+
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      form.example input[type="text"] {
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+      }
+
+      form.example button {
+        float: left;
+        width: 20%;
+        padding: 10px;
+        background: #2196f3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none;
+        cursor: pointer;
+      }
+
+      form.example button:hover {
+        background: #0b7dda;
+      }
+
+      form.example::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      .checked {
+        color: orange;
+        cursor: pointer; /* Add pointer cursor for hover effect */
+      }
+
+      .checked {
+        color: orange;
+        cursor: pointer; /* Add pointer cursor for hover effect */
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        padding-top: 60px;
+      }
+
+      /* Modal content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto; /* 5% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+      }
+
+      /* Close button */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
   </head>
-  <style>
-    #Logo {
-      width: 150px;
-      border-radius: 100px;
-      border: 2px solid #000000;
-    }
-    p {
-      border-bottom-style: solid;
-    }
-    .logout {
-      float: right;
-    }
-
-    body {
-      font-family: "Courier New", Courier, monospace;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    form.example input[type="text"] {
-      padding: 10px;
-      font-size: 17px;
-      border: 1px solid grey;
-      float: left;
-      width: 80%;
-      background: #f1f1f1;
-    }
-
-    form.example button {
-      float: left;
-      width: 20%;
-      padding: 10px;
-      background: #2196f3;
-      color: white;
-      font-size: 17px;
-      border: 1px solid grey;
-      border-left: none;
-      cursor: pointer;
-    }
-
-    form.example button:hover {
-      background: #0b7dda;
-    }
-
-    form.example::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
-  </style>
   <body>
     <img
       id="Logo"
@@ -70,11 +124,57 @@
     <div class="logout">
       <a href="index.html">Log Out</a>
     </div>
-    <! used for solid line>
+    <div class="account">
+      <a href="myAccount.html">My Account</a>
+    </div>
     <p></p>
     <form class="example" action="results.html">
       <input type="text" placeholder="Search.." name="search" />
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
+    <!-- Button to open the modal -->
+    <button onclick="openModal()">Rate</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Star Rating</h2>
+        <div id="stars">
+          <span class="fa fa-star" onclick="rateStar(1)"></span>
+          <span class="fa fa-star" onclick="rateStar(2)"></span>
+          <span class="fa fa-star" onclick="rateStar(3)"></span>
+          <span class="fa fa-star" onclick="rateStar(4)"></span>
+          <span class="fa fa-star" onclick="rateStar(5)"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to open the modal
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      // Function to close the modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      // Function to handle star rating
+      function rateStar(stars) {
+        var starElements = document.getElementsByClassName("fa-star");
+
+        // Update the color of stars based on user's selection
+        for (var i = 0; i < starElements.length; i++) {
+          if (i < stars) {
+            starElements[i].classList.add("checked");
+          } else {
+            starElements[i].classList.remove("checked");
+          }
+        }
+      }
+    </script>
   </body>
 </html>
