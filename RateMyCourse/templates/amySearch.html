@@ -33,6 +33,9 @@
 
       .select-selected {
         background-color: DodgerBlue;
+        float: left;
+        width: 100%;
+        height: 41px;
       }
 
       /*style the arrow inside the select element:*/
@@ -45,6 +48,7 @@
         height: 0;
         border: 6px solid transparent;
         border-color: #fff transparent transparent transparent;
+        float: left;
       }
 
       /*point the arrow upwards when the select box is open (active):*/
@@ -91,15 +95,16 @@
       * {
         box-sizing: border-box;
       }
-
+      /* for search button*/
       form.example input[type="text"] {
         padding: 10px;
         font-size: 17px;
         border: 1px solid grey;
         float: left;
-        width: 80%;
+        width: 65%;
         background: #f1f1f1;
         display: block;
+        float: left;
       }
 
       form.example button {
@@ -126,6 +131,10 @@
       .logout {
         float: right;
       }
+      .account {
+        float: right;
+        margin-right: 1%;
+      }
     </style>
   </head>
   <body>
@@ -137,10 +146,12 @@
     <div class="logout">
       <a href="index.html">Log Out</a>
     </div>
+    <div class="account">
+      <a href="myAccount.html">My Account</a>
+    </div>
     <! used for solid line>
     <p></p>
     <! used for select box>
-
     <h1>Look up any course</h1>
     <div class="custom-select" style="width: 200px">
       <select>
@@ -148,15 +159,8 @@
         <option value="1">CSIT</option>
         <option value="2">BIOL</option>
         <option value="3">ENGL</option>
-        <option value="4">CHEM</option>
-        <option value="5">ACCT</option>
-        <option value="6">INBS</option>
-        <option value="7">ECON</option>
-        <option value="8">WRIT</option>
-        <option value="9">LAWS</option>
         <option value="10">MATH</option>
         <option value="11">RELG</option>
-        <option value="12">CMST</option>
       </select>
     </div>
     <script>
