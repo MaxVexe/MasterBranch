@@ -124,18 +124,44 @@ def homeRender():
          #Get Session information from Session Data
          MainAccount = session['MainAccount']
          #pass mainaccount to html
-
+        #search box
          if request.method == 'POST':
-             saved_option = request.form.get('savedOption')
-             session['savedOption'] = saved_option
-             savedOption = session['savedOption']
-             print(savedOption,file=sys.stderr)
-             return 'Option saved Sucessfully'
+            search = request.form['search']
+            
+            if not search:
+                flash('Fill out the search')
+            else:
+                
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute('SELECT * FROM Course WHERE name = (?)', (search,))
+                resultSearch = cursor.fetchone()
+               
+                courseResult = "ok?"
+                
+                
+                if resultSearch:
+                    session['resultSearch'] = resultSearch['id']
+                    courseResult = session['resultSearch']
+                    
+                    return render_template("amyResults.html",courseResult = courseResult)
+                
+
+            return render_template('amyResults.html',courseResult = courseResult)
+         #end of search 
          else:
              return render_template('amySearch.html', MainAccount=MainAccount)
      else:
          return redirect(url_for("home"))
-     
+
+
+
+
+@app.route('/result',methods = ('GET','POST'))   
+def resultPage():
+
+    
+    return render_template('amyResults.html')
 
 @app.route('/about', methods = ('GET','POST'))
 
