@@ -64,7 +64,7 @@
   <body>
     <img
       id="Logo"
-      src="images/Logo.jpg"
+      src="{{url_for('static', filename='Logo.jpg')}}"
       alt="an image of Rate My Course Logo "
     />
     <div class="logout">
@@ -76,5 +76,18 @@
       <input type="text" placeholder="Search.." name="search" />
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
+   
+
+      {%if courseResult %}
+      <p> {{courseResult}}</p>
+      {% else %}
+        <p> Nothing Here</p>
+        <p> {{ courseResult}}</p>
+        <p> TEST END HERE</p>
+        
+      {% endif %}
+
+
+
   </body>
 </html>
