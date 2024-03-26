@@ -68,22 +68,27 @@
       alt="an image of Rate My Course Logo "
     />
     <div class="logout">
-      <a href="index.html">Log Out</a>
+      <a href="logout">Log Out</a>
     </div>
+    <div class="account">
+      <a href="about">My Account</a>
+    </div>
+
+
     <! used for solid line>
     <p></p>
-    <form class="example" action="results.html">
-      <input type="text" placeholder="Search.." name="search" />
+    <form class="example" method = 'POST'>
+      <input type="text" placeholder="Search.." name="search" id= "search" />
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
    
 
-      {%if courseResult %}
-      <p> {{courseResult}}</p>
+      {%if resultSearch %}
+      <p> Course name: {{resultSearch['name']}}</p>
+      <p> Course ID: {{resultSearch['id']}} </p>
+      <p> Course Desc: {{resultSearch['courseDesc']}} </p>
       {% else %}
-        <p> Nothing Here</p>
-        <p> {{ courseResult}}</p>
-        <p> TEST END HERE</p>
+        <h1> Course Not Found</h1>
         
       {% endif %}
 

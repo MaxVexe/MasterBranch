@@ -126,28 +126,29 @@ def homeRender():
          #pass mainaccount to html
         #search box
          if request.method == 'POST':
-            search = request.form['search']
-            
-            if not search:
-                flash('Fill out the search')
-            else:
+            if 'search' in request.form:
+                search = request.form['search']
                 
-                conn = get_db_connection()
-                cursor = conn.cursor()
-                cursor.execute('SELECT * FROM Course WHERE name = (?)', (search,))
-                resultSearch = cursor.fetchone()
-               
-                courseResult = "ok?"
-                
-                
-                if resultSearch:
-                    session['resultSearch'] = resultSearch['id']
-                    courseResult = session['resultSearch']
+                if not search:
+                    flash('Fill out the search')
+                else:
                     
-                    return render_template("amyResults.html",courseResult = courseResult)
+                    conn = get_db_connection()
+                    cursor = conn.cursor()
+                    cursor.execute('SELECT * FROM Course WHERE name = (?)', (search,))
+                    resultSearch = cursor.fetchone()
                 
-
-            return render_template('amyResults.html',courseResult = courseResult)
+                    courseResult = "ok?"
+                    
+                    
+                    if resultSearch:
+                        session['resultSearch'] = resultSearch['name']
+                        courseResult = session['resultSearch']
+                        
+                        return render_template("amyResults.html",resultSearch = resultSearch)
+                        
+                
+            return render_template('amyResults.html')
          #end of search 
          else:
              return render_template('amySearch.html', MainAccount=MainAccount)
@@ -167,7 +168,7 @@ def resultPage():
 
 def profileRender():
     MainAccount = session['MainAccount']
-    return render_template('profileTest.html', MainAccount = MainAccount)
+    return render_template('amyAccount.html', MainAccount = MainAccount)
     MainAccount = session['MainAccount']
     return render_template('profileTest.html', MainAccount = MainAccount)
 
