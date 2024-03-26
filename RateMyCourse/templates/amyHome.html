@@ -1,11 +1,20 @@
+<! declares the document type and version of HTML being used, which in this case is HTML5 >
 <!DOCTYPE html>
+<! starts the HTML document and declares the language of the document to be English >
 <html lang="en">
   <head>
+
+    <! specifies the character encoding for the document to be UTF-8 >
     <meta charset="UTF-8" />
+    <! sets the viewport properties for responsive web design, ensuring that the webpage is rendered properly on different devices and screen sizes >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <! brief description of the webpage, but it's currently empty >
     <meta name="description" content="" />
+    <! links an external CSS file named "style.css" to the HTML document for styling purposes >
     <link rel="stylesheet" href="style.css" />
+
     <title>Rate My Course</title>
+
     <style>
       #Logo {
         width: 200px;
@@ -24,25 +33,35 @@
       .button {
         background-color: rgba(36, 118, 240, 0.932);
         border: none;
+
+        /* text color to white */
         color: white;
+        /*  padding of 10 pixels at the top and bottom, and 150 pixels on the left and right */
         padding: 10px 150px;
         text-align: center;
         text-decoration: none;
+        /* element an inline block, allowing it to have padding and margins applied */
         display: inline-block;
         font-size: 14px;
+        /* margin of 2 pixels on all sides */
         margin: 2px 2px;
+        /* ursor to a pointer when hovering over */ 
         cursor: pointer;
         border-radius: 8px;
+        
       }
     </style>
   </head>
   <body>
+    <! used to group together a set of heading elements (<h1> to <h6>) >
     <hgroup>
       <img
         id="Logo"
         src="images/Logo.jpg"
         alt="an image of Rate My Course Logo "
       />
+
+      <! <div> element with the class texts >
       <div class="texts">
         <h2>Need to express your thoughts about a course...</h2>
         <h2>Why not put a rate to it!</h2>
