@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <! provides icons and other graphical elements for use on the webpage >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -21,7 +22,7 @@
         font-family: "Courier New", Courier, monospace;
       }
       /*for select box*/
-      /*the container must be positioned relative:*/
+      /* Sets the positioning context for child elements */
       .custom-select {
         position: relative;
         font-family: "Courier New", Courier, monospace;
@@ -31,6 +32,7 @@
         display: none; /*hide original SELECT element:*/
       }
 
+      /* selected options in a dropdown */
       .select-selected {
         background-color: DodgerBlue;
         float: left;
@@ -38,7 +40,7 @@
         height: 41px;
       }
 
-      /*style the arrow inside the select element:*/
+      /* targets the pseudo-element :after of elements with the class select-selected and creates a custom arrow for the select box*/
       .select-selected:after {
         position: absolute;
         content: "";
@@ -51,13 +53,15 @@
         float: left;
       }
 
-      /*point the arrow upwards when the select box is open (active):*/
+      /* from here and under, used for styling */
+      /* custom arrow that appears when the select box is active. It sets the border color and position of the arrow */
       .select-selected.select-arrow-active:after {
         border-color: transparent transparent #fff transparent;
         top: 7px;
       }
 
-      /*style the items (options), including the selected item:*/
+      /* styles the items (options) within the select box, including the selected item. It sets the color, padding, border, cursor, and user-select properties */
+
       .select-items div,
       .select-selected {
         color: #ffffff;
@@ -68,7 +72,7 @@
         user-select: none;
       }
 
-      /*style items (options):*/
+      /* styles the container for the select box options. It sets the position, background color, and z-index properties */
       .select-items {
         position: absolute;
         background-color: DodgerBlue;
@@ -78,24 +82,26 @@
         z-index: 99;
       }
 
-      /*hide the items when the select box is closed:*/
+      /* hides the select box options when the select box is closed */
       .select-hide {
         display: none;
       }
 
+      /* styles the hover effect for select box options and the currently selected option */
       .select-items div:hover,
       .same-as-selected {
         background-color: rgba(0, 0, 0, 0.1);
       }
-      /* for search bar*/
+      /* sets the font family for the entire webpage */
       body {
         font-family: "Courier New", Courier, monospace;
       }
 
+      /* applies the box-sizing property to all elements, ensuring that padding and border are included in the element's total width and height */
       * {
         box-sizing: border-box;
       }
-      /* for search button*/
+      /* styles the text input field = search button*/
       form.example input[type="text"] {
         padding: 10px;
         font-size: 17px;
@@ -107,6 +113,7 @@
         float: left;
       }
 
+      /* styles the submit button */
       form.example button {
         float: left;
         width: 20%;
@@ -119,10 +126,12 @@
         cursor: pointer;
       }
 
+      /* styles the submit button when hovered over */
       form.example button:hover {
         background: #0b7dda;
       }
 
+      /* clears floats after the form elements */
       form.example::after {
         content: "";
         clear: both;
@@ -253,8 +262,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <! used for search bar >
+    < class example and specifies the action attribute to "results.html",
+    meaning that when the form is submitted, the data will be sent to the
+    "results.html" page >00
     <form class="example" action="results.html">
+      <!  text input field for searching, with a placeholder text "Search.." and the name attribute set to "search" >
       <input type="text" placeholder="Search.." name="search" />
+      <! creates a submit button for the form, which contains a Font Awesome icon for a search symbol >
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </body>
