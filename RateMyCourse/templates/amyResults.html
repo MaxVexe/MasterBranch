@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Font Awesome Icon Library -->
     <link
       rel="stylesheet"
@@ -89,11 +89,12 @@
       .same-as-selected {
         background-color: rgba(0, 0, 0, 0.1);
       }
-      /* for search bar*/
+
       body {
         font-family: "Courier New", Courier, monospace;
       }
 
+      /* for search bar*/
       * {
         box-sizing: border-box;
       }
@@ -140,44 +141,6 @@
       }
 
       /* used for rate and comment buttons*/
-      body {
-        font-family: "Courier New", Courier, monospace;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      form.example input[type="text"] {
-        padding: 10px;
-        font-size: 17px;
-        border: 1px solid grey;
-        float: left;
-        width: 80%;
-        background: #f1f1f1;
-      }
-
-      form.example button {
-        float: left;
-        width: 5%;
-        padding: 10px;
-        background: #2196f3;
-        color: white;
-        font-size: 17px;
-        border: 1px solid grey;
-        border-left: none;
-        cursor: pointer;
-      }
-
-      form.example button:hover {
-        background: #0b7dda;
-      }
-
-      form.example::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
 
       .checked {
         color: orange;
@@ -335,18 +298,20 @@
       then close all select boxes:*/
       document.addEventListener("click", closeAllSelect);
     </script>
+
     <! used for search bar >
     <form class="example" action="results.html">
       <input type="text" placeholder="Search.." name="search" />
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 
-    <!-- Button to open the modal -->
+    <! rate >
+    <! Button to open the modal >
     <button onclick="openModal()">Rate</button>
 
-    <!-- The Modal -->
+    <! The Modal >
     <div id="myModal" class="modal">
-      <!-- Modal content -->
+      <! Modal content >
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>How Many Stars Would You Rate This Professor?</h2>
@@ -385,7 +350,7 @@
       }
     </script>
 
-    <!-- Button to open the comment form -->
+    <! Button to open the comment >
     <button onclick="toggleForm()">Comment</button>
 
     <div class="container" id="commentContainer">
@@ -449,7 +414,7 @@
         });
     </script>
     <div id="commentsContainer">
-      <!-- Existing comments will be displayed here -->
+      <! Existing comments will be displayed here >
     </div>
   </body>
 </html>
