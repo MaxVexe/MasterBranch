@@ -137,8 +137,7 @@ def homeRender():
                     cursor = conn.cursor()
                     cursor.execute('SELECT * FROM Course WHERE name = (?)', (search,))
                     resultSearch = cursor.fetchone()
-                
-                    courseResult = "ok?"
+            
                     
                     
                     if resultSearch:
