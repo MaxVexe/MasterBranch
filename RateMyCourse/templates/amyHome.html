@@ -3,7 +3,6 @@
 <! starts the HTML document and declares the language of the document to be English >
 <html lang="en">
   <head>
-
     <! specifies the character encoding for the document to be UTF-8 >
     <meta charset="UTF-8" />
     <! sets the viewport properties for responsive web design, ensuring that the webpage is rendered properly on different devices and screen sizes >
@@ -22,9 +21,9 @@
         border: 2px solid #000000;
       }
       #MSU-Hawk {
-        width: 100px;
-        float: right;
+        width: 50px;
       }
+
       hgroup {
         font-family: "Courier New", Courier, monospace;
         text-align: center;
@@ -45,15 +44,18 @@
         font-size: 14px;
         /* margin of 2 pixels on all sides */
         margin: 2px 2px;
-        /* ursor to a pointer when hovering over */ 
+        /* ursor to a pointer when hovering over */
         cursor: pointer;
         border-radius: 8px;
-        
+      }
+      .hawk {
+        font-family: "Courier New", Courier, monospace;
+        color: rgb(190, 10, 10);
       }
     </style>
   </head>
   <body>
-    <! used to group together a set of heading elements (<h1> to <h6>) >
+    <! used to group together a set of heading elements >
     <hgroup>
       <img
         id="Logo"
@@ -61,16 +63,9 @@
         alt="an image of Rate My Course Logo "
       />
 
-      <! <div> element with the class texts >
       <div class="texts">
         <h2>Need to express your thoughts about a course...</h2>
         <h2>Why not put a rate to it!</h2>
-        <img
-          id="MSU-Hawk"
-          src="images/MSU hawk.jpg"
-          alt="an image of MSU hawk"
-        />
-
         <div class="index-box">
           <form>
             <div>
@@ -107,9 +102,14 @@
           </p>
         </div>
       </div>
-      <p style="color: rgb(190, 10, 10)">
-        Designed for Montclair State University Students
-      </p>
+      <div class="hawk">
+        <img
+          id="MSU-Hawk"
+          src="images/MSU hawk.jpg"
+          alt="an image of MSU hawk"
+        />
+        <span> Designed for Montclair State University Students</span>
+      </div>
     </hgroup>
   </body>
 </html>
