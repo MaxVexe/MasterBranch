@@ -1,11 +1,19 @@
+<! declares the document type and version of HTML being used, which in this case is HTML5 >
 <!DOCTYPE html>
+<! starts the HTML document and declares the language of the document to be English >
 <html lang="en">
   <head>
+    <! specifies the character encoding for the document to be UTF-8 >
     <meta charset="UTF-8" />
+    <! sets the viewport properties for responsive web design, ensuring that the webpage is rendered properly on different devices and screen sizes >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <! brief description of the webpage, but it's currently empty >
     <meta name="description" content="" />
+    <! links an external CSS file named "style.css" to the HTML document for styling purposes >
     <link rel="stylesheet" href="style.css" />
+
     <title>Rate My Course</title>
+
     <style>
       #Logo {
         width: 200px;
@@ -13,9 +21,9 @@
         border: 2px solid #000000;
       }
       #MSU-Hawk {
-        width: 100px;
-        float: right;
+        width: 50px;
       }
+
       hgroup {
         font-family: "Courier New", Courier, monospace;
         text-align: center;
@@ -24,36 +32,42 @@
       .button {
         background-color: rgba(36, 118, 240, 0.932);
         border: none;
+
+        /* text color to white */
         color: white;
+        /*  padding of 10 pixels at the top and bottom, and 150 pixels on the left and right */
         padding: 10px 150px;
         text-align: center;
         text-decoration: none;
+        /* element an inline block, allowing it to have padding and margins applied */
         display: inline-block;
         font-size: 14px;
+        /* margin of 2 pixels on all sides */
         margin: 2px 2px;
+        /* ursor to a pointer when hovering over */
         cursor: pointer;
         border-radius: 8px;
+      }
+      .hawk {
+        font-family: "Courier New", Courier, monospace;
+        color: rgb(190, 10, 10);
       }
     </style>
   </head>
   <body>
+    <! used to group together a set of heading elements >
     <hgroup>
       <img
         id="Logo"
-        src="{{url_for('static', filename='Logo.jpg')}}" 
+        src="images/Logo.jpg"
         alt="an image of Rate My Course Logo "
       />
+
       <div class="texts">
         <h2>Need to express your thoughts about a course...</h2>
         <h2>Why not put a rate to it!</h2>
-        <img
-          id="MSU-Hawk"
-          src="{{url_for('static', filename='MSU.jpg')}}" 
-          alt="an image of MSU hawk"
-        />
-
         <div class="index-box">
-          <form method = 'POST'>
+          <form>
             <div>
               <h3>Sign in</h3>
               <label for="email"> Email:</label>
@@ -84,13 +98,18 @@
         <div>
           <p style="color: #000000">Don't Have An Account?</p>
           <p style="text-align: center">
-            <a href="/registor" class="button">Sign Up</a>
+            <a href="register.html" class="button">Sign Up</a>
           </p>
         </div>
       </div>
-      <p style="color: rgb(190, 10, 10)">
-        Designed for Montclair State University Students
-      </p>
+      <div class="hawk">
+        <img
+          id="MSU-Hawk"
+          src="images/MSU hawk.jpg"
+          alt="an image of MSU hawk"
+        />
+        <span> Designed for Montclair State University Students</span>
+      </div>
     </hgroup>
   </body>
 </html>
